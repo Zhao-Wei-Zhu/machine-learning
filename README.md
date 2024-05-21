@@ -1,4 +1,4 @@
-# machine-learning
+# REPLY-Machine Learning Project
 ## Introduction
 Efficient document management is crucial in today's fast-paced business environment. Whitehall Reply, a leader in technological innovations for Public Administration, seeks to enhance productivity by automating the classification of scanned documents using advanced machine learning techniques. This project aims to classify documents into predefined categories, thus minimizing manual effort and improving operational efficiency.
 
