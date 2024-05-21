@@ -29,12 +29,32 @@ The primary goal is to develop an image classification model that accurately cat
 * Metrics: Accuracy and F1-score, focusing on macro-average to address class imbalances.
 
 ### 2. Autoencoders
+##### Note on File Handling: To handle the large size of the autoencoder model files, please use 7zip for extraction as standard zip compression does not meet the size limitations (25MB) on GitHub.
+#### Model Evaluation
+The evaluation was a challenging aspect due to the reliance on reconstruction error, which is not directly interpretable. To address this, images were manually labeled post-reconstruction, and their accuracy was assessed using KMeans clustering, comparing the labels with predominant labels in each cluster.
+
 #### Implementation Details
-* Autoencoder models detect latent features and reconstruct images from these features, minimizing reconstruction error.
-* Images are clustered using KMeans, and model accuracy is assessed by comparing original labels with cluster labels.
-* Improvements include resizing images, increasing cluster numbers, and removing black borders.
+The autoencoder.ipynb file contains four sections, each reflecting progressive enhancements to the model:
+
+#### Autoencoder Benchmark
+* Resolution: Images resized to 28x28 pixels.
+* Loss Function: Binary cross-entropy.
+* Accuracy: Initial model accuracy stood at 49%, with notably low accuracy for handwritten documents and emails.
+* Clustering: Included an 'other' group, resulting in clusters combining emails and handwritten documents.
+#### Autoencoder 2
+* Resolution: Enhanced to 300x400 pixels.
+* Loss Function: Switched to mean squared error.
+* Improvement: Increased accuracy to 56%; however, emails and handwritten documents remained clustered together.
+#### Autoencoder 3
+* Enhancements: Introduced a function to remove black borders and increased the cluster count to 25.
+* Clustering Strategy: Adopted a hierarchical approach to merge clusters based on the dominant category, successfully segregating handwritten documents and emails.
+* Accuracy: Improved to 65.4%.
+#### Autoencoder Cross Validation
+* Method: Implemented k-fold cross-validation for hyperparameter tuning, addressing RAM constraints by optimizing parameters incrementally.
+* Outcome: Achieved a model accuracy of 67.49% with optimized parameters.
 
 ### 3. Transformer
+##### (Note：Please use google colab open the file ‘TransferLearning(Colab)’, Or download the file ‘TransferLearning(Local)’  and dataset(URL inside the code file) to run the code.)
 #### Environment Setup
 * TensorFlow and Keras: Primary frameworks for constructing and training neural network models, ideal for complex image data tasks.
 * MobileNetV2: A pre-trained model known for its efficiency, particularly suitable for mobile devices, offering a good balance between speed and accuracy.
