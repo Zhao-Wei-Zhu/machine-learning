@@ -5,42 +5,53 @@ Efficient document management is crucial in today's fast-paced business environm
 ## Project Objective
 The primary goal is to develop an image classification model that accurately categorizes scanned documents into five distinct classes: resumes (CV), advertisements (AD), emails (EMAIL), handwritten documents (DOC), and others (OTHER). The dataset consists of 2000 manually labeled images, and the objectives include:
 
-Developing models using Convolutional Neural Networks (CNNs), Transformers, and Autoencoders.
-Employing advanced machine learning techniques to achieve high accuracy and efficiency.
-Evaluating each model's performance using appropriate metrics and cross-validation methods.
+#### Developing models using Convolutional Neural Networks (CNNs), Transformers, and Autoencoders.
+#### Employing advanced machine learning techniques to achieve high accuracy and efficiency.
+#### Evaluating each model's performance using appropriate metrics and cross-validation methods.
 
 ## Methodology
 ### 1. Convolutional Neural Network (CNN)
-Environment Setup
-torchvision: Provides tools for handling image data transformations, part of the PyTorch ecosystem.
-Hugging Face's libraries: 'transformers' and 'evaluate' for state-of-the-art model training and evaluation.
-scikit-image: For image processing tasks.
-pandas: For data management in structured format.
-Dataset Preparation
-Data Cleaning: Standardized image sizes to 64x64 pixels, ensuring consistency in quality and clarity.
-Normalization: Adjusted pixel values for stability and training speed.
-Model Strategy
-Architecture: Consists of convolutional layers capturing spatial hierarchies, pooling layers, and fully connected layers for classification.
-Activation Function: LeakyReLU to prevent the "dying ReLU" problem.
-Training and Evaluation
-Loss Function: Cross-entropy loss.
-Optimizer: Stochastic Gradient Descent (SGD).
-Validation: Stratified K-fold cross-validation to ensure a robust estimate of model performance.
-Metrics: Accuracy and F1-score, focusing on macro-average to address class imbalances.
+#### Environment Setup
+* orchvision: Provides tools for handling image data transformations, part of the PyTorch ecosystem.
+* Hugging Face's libraries: 'transformers' and 'evaluate' for state-of-the-art model training and evaluation.
+* scikit-image: For image processing tasks.
+* pandas: For data management in structured format.
+#### Dataset Preparation
+* Data Cleaning: Standardized image sizes to 64x64 pixels, ensuring consistency in quality and clarity.
+* Normalization: Adjusted pixel values for stability and training speed.
+#### Model Strategy
+* Architecture: Consists of convolutional layers capturing spatial hierarchies, pooling layers, and fully connected layers for classification.
+* Activation Function: LeakyReLU to prevent the "dying ReLU" problem.
+#### Training and Evaluation
+* Loss Function: Cross-entropy loss.
+* Optimizer: Stochastic Gradient Descent (SGD).
+* Validation: Stratified K-fold cross-validation to ensure a robust estimate of model performance.
+* Metrics: Accuracy and F1-score, focusing on macro-average to address class imbalances.
 
 ### 2. Autoencoders
-Implementation Details
-Autoencoder models detect latent features and reconstruct images from these features, minimizing reconstruction error.
-Images are clustered using KMeans, and model accuracy is assessed by comparing original labels with cluster labels.
-Improvements include resizing images, increasing cluster numbers, and removing black borders.
+#### Implementation Details
+* Autoencoder models detect latent features and reconstruct images from these features, minimizing reconstruction error.
+* Images are clustered using KMeans, and model accuracy is assessed by comparing original labels with cluster labels.
+* Improvements include resizing images, increasing cluster numbers, and removing black borders.
 
 ### 3. Transformer
-Environment Setup
-Utilizes TensorFlow and MobileNetV2, effective for deep learning tasks.
-Data augmentation and batch processing for training efficiency.
-Model Strategy
-Base Model: MobileNetV2 with customized layers for classification.
-Training: Employed early stopping and learning rate adjustments to optimize performance.
+#### Environment Setup
+* TensorFlow and Keras: Primary frameworks for constructing and training neural network models, ideal for complex image data tasks.
+* MobileNetV2: A pre-trained model known for its efficiency, particularly suitable for mobile devices, offering a good balance between speed and accuracy.
+* Matplotlib and Seaborn: For visualizing training processes and understanding model performance through graphical representations.
+* NumPy: Essential for numerical data manipulation, crucial in processing image data.
+#### Dataset Preparation
+The dataset, organized into specific classes, is processed as follows:
+* Image Data Generator: Used for augmenting training data with transformations such as rotations, shifts, and flips to prevent overfitting. The target size for images is set to 224x224 pixels.
+* Validation Split: A portion of the dataset is reserved for validation to monitor and evaluate the model's performance during training.
+* Batch Processing: The dataset is processed in batches of 32 to optimize memory usage and accelerate the training process.
+#### Model Strategy
+* Base Model: MobileNetV2 with customized layers for classification.
+* Optimizer: The model is compiled using an Adam optimizer with a categorical crossentropy loss function.
+* Training Techniques: Implements early stopping and learning rate reduction to optimize training and prevent overfitting.
+* Monitoring: Training adjustments are monitored through callbacks focusing on validation loss and accuracy. The total epochs set for training are 15.
+* Performance Visualization: Accuracy and loss trends are plotted to identify potential overfitting or underfitting.
+* Evaluation Metrics: A classification report and confusion matrix are generated, analyzing precision, recall, and F1-scores for each class.
 
 ## Conclusion
 CNNs were selected as the best approach due to their effectiveness in image processing and classification. While Autoencoders showed promise in unsupervised feature learning and Transformers in sequential data processing, CNNs provided the most reliable and efficient results for the document classification tasks.
