@@ -29,7 +29,6 @@ The primary goal is to develop an image classification model that accurately cat
 * Metrics: Accuracy and F1-score, focusing on macro-average to address class imbalances.
 
 ### 2. Autoencoders
-##### Note on File Handling: To handle the large size of the autoencoder model files, please use 7zip for extraction as standard zip compression does not meet the size limitations (25MB) on GitHub.
 #### Model Evaluation
 The evaluation was a challenging aspect due to the reliance on reconstruction error, which is not directly interpretable. To address this, images were manually labeled post-reconstruction, and their accuracy was assessed using KMeans clustering, comparing the labels with predominant labels in each cluster.
 
