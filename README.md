@@ -27,6 +27,7 @@ The primary goal is to develop an image classification model that accurately cat
 * Optimizer: Stochastic Gradient Descent (SGD).
 * Validation: Stratified K-fold cross-validation to ensure a robust estimate of model performance.
 * Metrics: Accuracy and F1-score, focusing on macro-average to address class imbalances.
+##### The training spanned 10 epochs, emphasizing F1-score optimization to maximize learning from the limited dataset and mitigate overfitting. The model demonstrated consistent improvement in accuracy and F1-score, achieving a validation accuracy of 0.875256 and an F1-score of 0.789842 by the final epoch.
 
 ### 2. Autoencoders
 #### Model Evaluation
@@ -36,21 +37,21 @@ The evaluation was a challenging aspect due to the reliance on reconstruction er
 The autoencoder.ipynb file contains four sections, each reflecting progressive enhancements to the model:
 
 #### Autoencoder Benchmark
-* Resolution: Images resized to 28x28 pixels.
+* Resolution: Images resized to 21x28 pixels.
 * Loss Function: Binary cross-entropy.
 * Accuracy: Initial model accuracy stood at 49%, with notably low accuracy for handwritten documents and emails.
-* Clustering: Included an 'other' group, resulting in clusters combining emails and handwritten documents.
+* Clustering: Included an 'other' group, emails and handwritten documents were clustered in the same cluster.
 #### Autoencoder 2
 * Resolution: Enhanced to 300x400 pixels.
 * Loss Function: Switched to mean squared error.
 * Improvement: Increased accuracy to 56%; however, emails and handwritten documents remained clustered together.
 #### Autoencoder 3
-* Enhancements: Introduced a function to remove black borders and increased the cluster count to 25.
-* Clustering Strategy: Adopted a hierarchical approach to merge clusters based on the dominant category, successfully segregating handwritten documents and emails.
+* Enhancements: Introduced a function to remove black borders and increased the cluster number to 25.
+* Clustering Strategy: Adopted a hierarchical approach to merge clusters based on the dominant category in each cluster, successfully segregating handwritten documents and emails with higher number of clusters.
 * Accuracy: Improved to 65.4%.
 #### Autoencoder Cross Validation
-* Method: Implemented k-fold cross-validation for hyperparameter tuning, addressing RAM constraints by optimizing parameters incrementally.
-* Outcome: Achieved a model accuracy of 67.49% with optimized parameters.
+* Method: Implemented k-fold cross-validation for hyperparameter tuning, but for the RAM burden this process is handled manually by tuning single parameter per time, the first tuning focused on batch size, the second on epochs, the third on latent dimension. After obtaining best parameters, the best cluster number is also tested and merged to obtain 4 main clusters.
+* Outcome:  the hyperparameter tuning was not effective in terms of accuracy improvement, all of the three tuning achieved 65% of accuracy.
 
 ### 3. Transformer
 ##### (Note：Please use google colab open the file ‘TransferLearning(Colab)’, Or download the file ‘TransferLearning(Local)’  and dataset(URL inside the code file) to run the code.)
